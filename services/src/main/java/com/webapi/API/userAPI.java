@@ -13,9 +13,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.google.gson.Gson;
 import com.webapi.models.Personne;
 import com.webapi.models.Response;
 import com.webapi.services.UserService;
+
+//http://localhost:8080/services/webapi/user/getAllChilds/User2
 
 @Path("/user")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -67,9 +70,12 @@ public class userAPI {
 	}
 	@GET
     @Path("/getAllChilds/{userName}")
-	public ArrayList<Object> getAllChilds(@PathParam("userName") String userName) {
+	public String getAllChilds(@PathParam("userName") String userName) {
 		UserService us = new UserService(userName);
-		return us.getAllChilds();
+		
+		String json = new Gson().toJson(us.getAllChilds());
+		
+		return json;
 	}
 	@GET
     @Path("/getUserCourses/{userName}")
