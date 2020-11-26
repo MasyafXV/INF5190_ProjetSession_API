@@ -36,5 +36,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mongo-java-driver-3.7.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/json-20200518.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
