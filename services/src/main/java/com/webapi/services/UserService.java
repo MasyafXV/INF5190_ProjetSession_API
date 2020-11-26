@@ -40,8 +40,8 @@ public class UserService {
 	    	String password="";
 	    	
 	    	if (UserDoc !=null) {
-		    	System.out.println(UserDoc.toJson());
-		    	System.out.println(UserDoc.getString("password"));
+//		    	System.out.println(UserDoc.toJson());
+//		    	System.out.println(UserDoc.getString("password"));
 		    	password=UserDoc.getString("password");
 
 	    		
