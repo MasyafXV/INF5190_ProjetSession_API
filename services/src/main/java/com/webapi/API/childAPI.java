@@ -25,7 +25,7 @@ import com.webapi.services.UserService;
 public class childAPI {
 
 	@POST
-	@Path("/ChildcourseInscription/{childFname}/{courseLevel}")
+	@Path("/ChildcourseInscription")
 	
 	public boolean ChildcourseInscription(
 			@PathParam("childFname") String childFname,
