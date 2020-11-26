@@ -38,18 +38,37 @@ public class userAPI {
 	}
 	
 	@POST
-    @Path("/createUser/{userName}/{password}/{firstname}/{lastname}/{email}/{adress}/{bdate}")
-	public boolean createUser(
-			@PathParam("userName") String userName,
-			@PathParam("password") String password,
-			@PathParam("firstname") String firstname,
-			@PathParam("lastname") String lastname,
-			@PathParam("email") String email,
-			@PathParam("adress") String adress,
-			@PathParam("bdate") String bdate) {
-		UserService us = new UserService(userName);
-		us.createUser(userName, password, firstname, lastname, email, adress, bdate);
-		return true;
+    @Path("/createUser")
+	public String createUser(InputStream incomingData) {
+		BufferedReader streamReader = null;
+		try {
+			streamReader = new BufferedReader(new InputStreamReader(incomingData, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		StringBuilder responseStrBuilder = new StringBuilder();
+
+		String inputStr;
+		try {
+			while ((inputStr = streamReader.readLine()) != null)
+			    responseStrBuilder.append(inputStr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JSONObject newUser =new JSONObject(responseStrBuilder.toString());
+		System.out.println("printing data : " + newUser.toString());
+		
+		UserService us = new UserService(newUser.getJSONObject("newUser").getString("userName"));
+		us.createUser(newUser.getJSONObject("newUser").getString("password"),
+					  newUser.getJSONObject("newUser").getString("firstname"),
+					  newUser.getJSONObject("newUser").getString("userName"),
+					  newUser.getJSONObject("newUser").getString("lastname"),
+					  newUser.getJSONObject("newUser").getString("email"),
+					  newUser.getJSONObject("newUser").getString("adress"),
+					  newUser.getJSONObject("newUser").getString("bdate"));
+		return new Gson().toJson(true);
 	}
 	
 	@POST
