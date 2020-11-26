@@ -120,8 +120,11 @@ public class userAPI {
 	}
 	@GET
     @Path("/getUserCourses/{userName}")
-	public ArrayList<Object> getUserCourses(@PathParam("userName") String userName) {
+	public String getUserCourses(@PathParam("userName") String userName) {
+		
 		UserService us = new UserService(userName);
-		return us.getUserCourses();
+		String json = new Gson().toJson(us.getUserCourses());
+		
+		return json;
 	}
 }
