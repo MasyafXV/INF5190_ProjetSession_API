@@ -12,7 +12,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 import com.webapi.mangodb.DatabaseManager;
-import com.webapi.models.SessionDTO;
+import com.webapi.models.SessionModel;
 
 public class SessionService {
 
@@ -28,7 +28,7 @@ public class SessionService {
 
 	}
 
-	public ArrayList<SessionDTO> getAllSessions() throws ParseException {
+	public ArrayList<SessionModel> getAllSessions() throws ParseException {
 
 		MongoCollection<Document> sessionCollection = mydatabase.getCollection("Sessions");
 
@@ -36,7 +36,7 @@ public class SessionService {
 
 		MongoCursor<Document> cursor = iterable.iterator(); // (2)
 
-		ArrayList<SessionDTO> sessionsList = new ArrayList<SessionDTO>();
+		ArrayList<SessionModel> sessionsList = new ArrayList<SessionModel>();
 
 		try {
 
@@ -44,9 +44,9 @@ public class SessionService {
 
 				Document session = cursor.next();
 
-				SessionDTO sessionDTO = new SessionDTO(session.getString("sessionCode"), session.getString("season"),
+				SessionModel sessionModel = new SessionModel(session.getString("sessionCode"), session.getString("season"),
 						session.getString("year"), session.getString("sessionFrom"), session.getString("sessionTo"));
-				sessionsList.add(sessionDTO);
+				sessionsList.add(sessionModel);
 			}
 
 		} finally {
@@ -59,7 +59,7 @@ public class SessionService {
 
 	}
 
-	public boolean createSession(SessionDTO newSession) {
+	public boolean createSession(SessionModel newSession) {
 
 		MongoCollection<Document> sessionCollection = mydatabase.getCollection("Sessions");
 

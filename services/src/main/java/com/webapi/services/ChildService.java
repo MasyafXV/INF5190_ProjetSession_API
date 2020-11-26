@@ -49,7 +49,8 @@ public class ChildService {
 
     	ArrayList<Object> courses =null;
     	courses = (ArrayList<Object>) childDoc.get("RegisteredCourses");
-    	
+    	System.out.println(courses.toString());
+
 		return courses;
 	}
 	

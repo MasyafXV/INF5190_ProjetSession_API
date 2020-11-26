@@ -25,7 +25,7 @@ public class AdminService {
 		mydatabase = dbManager.getDatabase(client);
 	}
 
-	public String getUserPassword() {
+	public String getAdminPassword() {
 
 		MongoCollection<Document> collection = mydatabase.getCollection("AdminCredentials");
 	    

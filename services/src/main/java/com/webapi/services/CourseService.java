@@ -11,7 +11,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 import com.webapi.mangodb.DatabaseManager;
-import com.webapi.models.CourseDTO;
+import com.webapi.models.Course;
 import com.webapi.models.CoursePrerequisite;
 
 public class CourseService {
@@ -28,7 +28,7 @@ public class CourseService {
 
 	}
 
-	public ArrayList<CourseDTO> getAllCourses() {
+	public ArrayList<Course> getAllCourses() {
 
 		MongoCollection<Document> courseCollection = mydatabase.getCollection("Courses");
 
@@ -36,7 +36,7 @@ public class CourseService {
 
 		MongoCursor<Document> cursor = iterable.iterator(); // (2)
 
-		ArrayList<CourseDTO> coursesList = new ArrayList<CourseDTO>();
+		ArrayList<Course> coursesList = new ArrayList<Course>();
 
 		try {
 
@@ -47,10 +47,10 @@ public class CourseService {
 				@SuppressWarnings("unchecked")
 				Object[] prerequisites = ((ArrayList<String>) course.get("prerequisite")).toArray();
 
-				CourseDTO courseDTO = new CourseDTO(course.getString("sessionCode"), course.getString("courseLevel"),
+				Course courseModel = new Course(course.getString("sessionCode"), course.getString("courseLevel"),
 						course.getString("description"), course.getString("NbPlace"), course.getString("price"),
 						prerequisites);
-				coursesList.add(courseDTO);
+				coursesList.add(courseModel);
 			}
 
 		} finally {
@@ -63,7 +63,7 @@ public class CourseService {
 
 	}
 
-	public boolean createCourse(CourseDTO newCourse) {
+	public boolean createCourse(Course newCourse) {
 
 		MongoCollection<Document> courseCollection = mydatabase.getCollection("Courses");
 

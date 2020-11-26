@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SessionDTO {
+public class SessionModel {
 
 	private String code = "";
 	private String season = "";
@@ -13,10 +13,10 @@ public class SessionDTO {
 	private Date sessionFrom = new Date();
 	private Date sessionTo = new Date();
 
-	public SessionDTO() {
+	public SessionModel() {
 	}
 
-	public SessionDTO(String code, String season, String year, String dateFrom, String dateTo) throws ParseException {
+	public SessionModel(String code, String season, String year, String dateFrom, String dateTo) throws ParseException {
 
 		this.code = code;
 		this.season = season;

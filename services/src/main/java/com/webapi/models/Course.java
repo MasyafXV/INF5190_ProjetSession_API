@@ -1,6 +1,6 @@
 package com.webapi.models;
 
-public class CourseDTO {
+public class Course {
 
 	private String courseCode = "";
 	private String sessionCode = "";
@@ -10,12 +10,12 @@ public class CourseDTO {
 	private String price = "";
 	private Object[] prerequisite = null;
 
-	public CourseDTO(String courseLevel, Object[] prerequisite) {
+	public Course(String courseLevel, Object[] prerequisite) {
 		this.courseLevel = courseLevel;
 		this.prerequisite = prerequisite;
 	}
 
-	public CourseDTO(String sessionCode, String courseLevel, String description, String NbPlace, String price,
+	public Course(String sessionCode, String courseLevel, String description, String NbPlace, String price,
 			Object[] prerequisite) {
 		this.sessionCode = sessionCode;
 		this.courseLevel = courseLevel;
@@ -25,19 +25,19 @@ public class CourseDTO {
 		this.prerequisite = prerequisite;
 	}
 
-	public CourseDTO(String sessionCode, String courseLevel) {
+	public Course(String sessionCode, String courseLevel) {
 		this.sessionCode = sessionCode;
 		this.courseLevel = courseLevel;
 
 	}
 
-	public CourseDTO(String courseCode, String sessionCode, String courseLevel) {
+	public Course(String courseCode, String sessionCode, String courseLevel) {
 		this.courseCode = courseCode;
 		this.sessionCode = sessionCode;
 		this.courseLevel = courseLevel;
 	}
 
-	public CourseDTO(String sessionCode, String courseLevel, String description, String NbPlace, String price) {
+	public Course(String sessionCode, String courseLevel, String description, String NbPlace, String price) {
 		this.sessionCode = sessionCode;
 		this.courseLevel = courseLevel;
 		this.description = description;
