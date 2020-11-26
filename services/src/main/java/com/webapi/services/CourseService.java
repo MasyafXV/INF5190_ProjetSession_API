@@ -9,10 +9,10 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import com.pronatation.Courses.CourseDTO;
-import com.pronatation.Courses.CoursePrerequisite;
 
 import com.webapi.mangodb.DatabaseManager;
+import com.webapi.models.CourseDTO;
+import com.webapi.models.CoursePrerequisite;
 
 public class CourseService {
 

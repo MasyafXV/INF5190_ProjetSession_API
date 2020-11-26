@@ -10,9 +10,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import com.pronatation.Session.SessionDTO;
 
 import com.webapi.mangodb.DatabaseManager;
+import com.webapi.models.SessionDTO;
 
 public class SessionService {
 
