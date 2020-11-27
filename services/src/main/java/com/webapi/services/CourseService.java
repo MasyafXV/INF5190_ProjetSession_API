@@ -85,9 +85,6 @@ public class CourseService {
 	public boolean setNewStudent(JSONObject newStudent) {
 		
 	    MongoCollection<Document> coursesCollection = mydatabase.getCollection("Courses");
-	    
-		System.out.println("printing data : " + newStudent.toString());
-		System.out.println("printing data : " + newStudent.getJSONObject("Student").getString("userName"));
 
 
 	    //update the course
