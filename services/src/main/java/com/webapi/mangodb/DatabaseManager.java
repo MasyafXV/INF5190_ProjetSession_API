@@ -37,68 +37,68 @@ public class DatabaseManager {
 			// creating courses
 			MongoCollection<Document> CoursesCollection = mydatabase.getCollection("Courses");
 			Document Etoile_de_mer = new Document("courseLevel", "Etoile_de_mer").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("none"));
 
 			Document Bambins = new Document("courseLevel", "Bambins").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("Etoile_de_mer"));
 
 			Document Tortues = new Document("courseLevel", "Tortues").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins"));
 
 			Document Pingouins = new Document("courseLevel", "Pingouins").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins", "Tortues"));
 
 			Document Salamandre = new Document("courseLevel", "Salamandre").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins", "Tortues", "Pingouins"));
 
 			Document Baleines = new Document("courseLevel", "Baleines").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite",
 							Arrays.asList("Etoile_de_mer", "Bambins", "Tortues", "Pingouins", "Salamandre"));
 
 			Document Grenouilles = new Document("courseLevel", "Grenouilles").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins", "Tortues", "Pingouins",
 							"Salamandre", "Baleines"));
 
 			Document Dauphins = new Document("courseLevel", "Dauphins").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins", "Tortues", "Pingouins",
 							"Salamandre", "Baleines", "Grenouilles"));
 
 			Document Junior1 = new Document("courseLevel", "Junior1").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins", "Tortues", "Pingouins",
 							"Salamandre", "Baleines", "Grenouilles", "Dauphins"));
 
 			Document Junior2 = new Document("courseLevel", "Junior2").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins", "Tortues", "Pingouins",
 							"Salamandre", "Baleines", "Grenouilles", "Dauphins", "Junior1"));
 
 			Document Junior3 = new Document("courseLevel", "Junior3").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins", "Tortues", "Pingouins",
 							"Salamandre", "Baleines", "Grenouilles", "Dauphins", "Junior1", "Junior2"));
 
 			Document Junior4 = new Document("courseLevel", "Junior4").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("Etoile_de_mer", "Bambins", "Tortues", "Pingouins",
 							"Salamandre", "Baleines", "Grenouilles", "Dauphins", "Junior1", "Junior2", "Junior3"));
 
 			Document Junior5 = new Document("courseLevel", "Junior5").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite",
 							Arrays.asList("Etoile_de_mer", "Bambins", "Tortues", "Pingouins", "Salamandre", "Baleines",
 									"Grenouilles", "Dauphins", "Junior1", "Junior2", "Junior3", "Junior4"));
 
 			Document Maitre_Nageur = new Document("courseLevel", "Maitre_Nageur").append("sessionCode", "A20")
-					.append("firstname", "").append("description", "").append("NbPlace", "").append("price", "")
+					.append("firstname", "").append("description", "").append("NbPlace", "30").append("price", "79.99")
 					.append("prerequisite", Arrays.asList("Age higher than 16"));
 
 			CoursesCollection.insertOne(Etoile_de_mer);
