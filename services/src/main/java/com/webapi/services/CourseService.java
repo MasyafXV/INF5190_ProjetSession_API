@@ -91,6 +91,20 @@ public class CourseService {
     	Document course = new Document("students", Arrays.asList(newStudent.getJSONObject("Student").getString("userName")));
     	coursesCollection.updateOne(eq("courseLevel", newStudent.getJSONObject("Student").getString("courseLevel")), new Document("$push", course));
     	
+
+    	//update nb place
+	    MongoCollection<Document> collection = mydatabase.getCollection("Courses");
+	    Document courseDoc = collection.find(eq("courseLevel", newStudent.getJSONObject("Student").getString("courseLevel"))).first();
+		int  nbPlace = Integer.parseInt(courseDoc.get("NbPlace").toString()) - 1;
+		
+    	Document nbPlaceDoc = new Document("NbPlace",nbPlace);
+    	
+		System.out.println(nbPlaceDoc);
+		courseDoc.put("NbPlace",String.valueOf(nbPlace));
+
+    	coursesCollection.replaceOne(eq("courseLevel", newStudent.getJSONObject("Student").getString("courseLevel")), courseDoc);
+
+    	
 		return true;		
 	}
 
