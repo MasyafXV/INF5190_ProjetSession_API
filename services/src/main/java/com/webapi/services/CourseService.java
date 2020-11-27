@@ -1,8 +1,12 @@
 package com.webapi.services;
 
+import static com.mongodb.client.model.Filters.eq;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.bson.Document;
+import org.json.JSONObject;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
@@ -76,6 +80,21 @@ public class CourseService {
 
 		return true;
 
+	}
+
+	public boolean setNewStudent(JSONObject newStudent) {
+		
+	    MongoCollection<Document> coursesCollection = mydatabase.getCollection("Courses");
+	    
+		System.out.println("printing data : " + newStudent.toString());
+		System.out.println("printing data : " + newStudent.getJSONObject("Student").getString("userName"));
+
+
+	    //update the course
+    	Document course = new Document("students", Arrays.asList(newStudent.getJSONObject("Student").getString("userName")));
+    	coursesCollection.updateOne(eq("courseLevel", newStudent.getJSONObject("Student").getString("courseLevel")), new Document("$push", course));
+    	
+		return true;		
 	}
 
 }
