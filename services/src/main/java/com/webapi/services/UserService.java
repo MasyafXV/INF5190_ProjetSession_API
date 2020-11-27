@@ -51,6 +51,29 @@ public class UserService {
 		
 	}
 	
+	public String getUserBdate() {
+		
+
+	     MongoCollection<Document> collection = mydatabase.getCollection("Users");
+	     
+	    	
+	    	Document UserDoc = collection.find(eq("userName", userName)).first();
+	    	
+	    	String bdate="";
+	    	
+	    	if (UserDoc !=null) {
+
+	    		bdate=UserDoc.getString("bdate");
+
+	    		
+	    	}	
+		
+		return bdate;
+		
+	}
+	
+	
+	
 	public boolean createUser(
 			String userName,
 			String password,

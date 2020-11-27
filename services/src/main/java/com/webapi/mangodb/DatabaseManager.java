@@ -153,11 +153,11 @@ public class DatabaseManager {
 			MongoCollection<Document> UsersCollection = mydatabase.getCollection("Users");
 			Document user1_Profile = new Document("userName", "User1").append("firstname", "John")
 					.append("lastname", "Doe").append("email", "John@example.com").append("adress", "999 av.xxx")
-					.append("bdate", "99/99/9999");
+					.append("bdate", "1979-09-15");
 
 			Document user2_Profile = new Document("userName", "User2").append("firstname", "Smith")
 					.append("lastname", "Jael").append("email", "Smith@example.com").append("adress", "9191 av.yyy")
-					.append("bdate", "99/99/9999");
+					.append("bdate", "1998-05-28");
 			UsersCollection.insertOne(user1_Profile);
 			UsersCollection.insertOne(user2_Profile);
 

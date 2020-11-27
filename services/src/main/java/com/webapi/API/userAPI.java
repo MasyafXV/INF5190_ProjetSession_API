@@ -37,6 +37,14 @@ public class userAPI {
 		return us.getUserPassword();
 	}
 	
+	@GET
+	@Path("/getUserBdate/{userName}")
+	public String getUserBdate(@PathParam("userName") String userName) {
+		UserService us = new UserService(userName);
+
+		return us.getUserBdate();
+	}
+	
 	@POST
     @Path("/createUser")
 	public String createUser(InputStream incomingData) {
