@@ -1,6 +1,6 @@
 # INF5190_ProjetSession_API
 
-Ceci est le web API de notre projet de session.
+Ceci est le web API de notre projet de session utilisant Jersey RESTful Web Services, un framework open source pour le développement de services Web RESTful en Java. Il prend en charge les API JAX-RS et sert d'implémentation de référence JAX-RS.
 
 ## Utilisation
 Lancer cet application sur Tomcat v.9 dans localhost.
