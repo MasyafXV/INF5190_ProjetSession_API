@@ -5,7 +5,7 @@ Ceci est le web API de notre projet de session utilisant Jersey RESTful Web Serv
 ## Utilisation
 Lancer cet application sur Tomcat v.9 dans localhost.
 
-Vous s'assurer que l'API fonctionne, vous devriez voir l'image ci dessous a l'adresse http://localhost:8080/services/webapi
+Vous s'assurer que l'API fonctionne, vous devriez voir l'image ci dessous a l'adresse http://localhost:8080/services/
 
 ![jersey](/preview.png)
 
