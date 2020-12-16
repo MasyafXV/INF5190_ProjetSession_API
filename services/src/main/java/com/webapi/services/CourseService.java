@@ -13,7 +13,6 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-
 import com.webapi.mangodb.DatabaseManager;
 import com.webapi.models.Course;
 import com.webapi.models.CoursePrerequisite;
@@ -67,14 +66,15 @@ public class CourseService {
 
 	}
 
-	public boolean createCourse(Course newCourse) {
+	public boolean createCourse(JSONObject newCourse) {
 
 		MongoCollection<Document> courseCollection = mydatabase.getCollection("Courses");
 
-		Document course = new Document("courseLevel", newCourse.getCourseLevel())
-				.append("sessionCode", newCourse.getSessionCode()).append("description", newCourse.getDescription())
-				.append("NbPlace", newCourse.getNbPlace()).append("price", newCourse.getprice())
-				.append("prerequisite", new CoursePrerequisite().getPrerequisiteOf(newCourse.getCourseLevel()));
+		Document course = new Document("courseLevel", newCourse.getString("courseLevel"))
+				.append("sessionCode", newCourse.getString("sessionCode"))
+				.append("description", newCourse.getString("description"))
+				.append("NbPlace", newCourse.getString("NbPlace")).append("price", newCourse.getString("price"))
+				.append("prerequisite", new CoursePrerequisite().getPrerequisiteOf(newCourse.getString("courseLevel")));
 
 		courseCollection.insertOne(course);
 
@@ -83,29 +83,30 @@ public class CourseService {
 	}
 
 	public boolean setNewStudent(JSONObject newStudent) {
-		
-	    MongoCollection<Document> coursesCollection = mydatabase.getCollection("Courses");
 
+		MongoCollection<Document> coursesCollection = mydatabase.getCollection("Courses");
 
-	    //update the course
-    	Document course = new Document("students", Arrays.asList(newStudent.getJSONObject("Student").getString("userName")));
-    	coursesCollection.updateOne(eq("courseLevel", newStudent.getJSONObject("Student").getString("courseLevel")), new Document("$push", course));
-    	
+		// update the course
+		Document course = new Document("students",
+				Arrays.asList(newStudent.getJSONObject("Student").getString("userName")));
+		coursesCollection.updateOne(eq("courseLevel", newStudent.getJSONObject("Student").getString("courseLevel")),
+				new Document("$push", course));
 
-    	//update nb place
-	    MongoCollection<Document> collection = mydatabase.getCollection("Courses");
-	    Document courseDoc = collection.find(eq("courseLevel", newStudent.getJSONObject("Student").getString("courseLevel"))).first();
-		int  nbPlace = Integer.parseInt(courseDoc.get("NbPlace").toString()) - 1;
-		
-    	Document nbPlaceDoc = new Document("NbPlace",nbPlace);
-    	
+		// update nb place
+		MongoCollection<Document> collection = mydatabase.getCollection("Courses");
+		Document courseDoc = collection
+				.find(eq("courseLevel", newStudent.getJSONObject("Student").getString("courseLevel"))).first();
+		int nbPlace = Integer.parseInt(courseDoc.get("NbPlace").toString()) - 1;
+
+		Document nbPlaceDoc = new Document("NbPlace", nbPlace);
+
 		System.out.println(nbPlaceDoc);
-		courseDoc.put("NbPlace",String.valueOf(nbPlace));
+		courseDoc.put("NbPlace", String.valueOf(nbPlace));
 
-    	coursesCollection.replaceOne(eq("courseLevel", newStudent.getJSONObject("Student").getString("courseLevel")), courseDoc);
+		coursesCollection.replaceOne(eq("courseLevel", newStudent.getJSONObject("Student").getString("courseLevel")),
+				courseDoc);
 
-    	
-		return true;		
+		return true;
 	}
 
 }
