@@ -127,10 +127,12 @@ public class DatabaseManager {
 
 			// creating courses
 			MongoCollection<Document> SessionsCollection = mydatabase.getCollection("Sessions");
-			Document Automne20 = new Document("sessionCode", "A20").append("season", "Automne").append("year", "2020")
+			Document Automne20 = new Document();
+			Automne20 = new Document("sessionCode", "A20").append("season", "Automne").append("year", "2020")
 					.append("sessionFrom", "08/09/2020").append("sessionTo", "22/12/2020");
 
 			SessionsCollection.insertOne(Automne20);
+
 		}
 
 		// check if UserCredentials collection already exists

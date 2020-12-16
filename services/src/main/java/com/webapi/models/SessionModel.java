@@ -9,7 +9,6 @@ public class SessionModel {
 	private String code = "";
 	private String season = "";
 	private String year = "";
-	public SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	private Date sessionFrom = new Date();
 	private Date sessionTo = new Date();
 
@@ -21,8 +20,19 @@ public class SessionModel {
 		this.code = code;
 		this.season = season;
 		this.year = year;
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		this.sessionFrom = sdf.parse(dateFrom);
 		this.sessionTo = sdf.parse(dateTo);
+
+	}
+
+	public SessionModel(String code, String season, String year, Date dateFrom, Date dateTo) throws ParseException {
+		this.code = code;
+		this.season = season;
+		this.year = year;
+		this.sessionFrom = dateFrom;
+		this.sessionTo = dateTo;
 	}
 
 	public String getCode() {
