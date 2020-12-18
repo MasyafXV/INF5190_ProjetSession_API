@@ -10,6 +10,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -92,6 +93,47 @@ public class courseAPI {
 		cService.setNewStudent(newStudent);
 
 		return new Gson().toJson(true);
+	}
+
+	@POST
+	@Path("/gradeStudent")
+	public String gradeStudent(InputStream incomingData) {
+		BufferedReader streamReader = null;
+		try {
+			streamReader = new BufferedReader(new InputStreamReader(incomingData, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		StringBuilder responseStrBuilder = new StringBuilder();
+
+		String inputStr;
+		try {
+			while ((inputStr = streamReader.readLine()) != null)
+				responseStrBuilder.append(inputStr);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		JSONObject gradeStudent = new JSONObject(responseStrBuilder.toString());
+		System.out.println("printing data : " + gradeStudent.toString());
+
+		CourseService cService = new CourseService();
+
+		String json = new Gson().toJson(cService.gradeStudent(gradeStudent));
+
+		return json;
+	}
+
+	@GET
+	@Path("/getGradesForCourse/{courseCode}")
+	public String getGradesForCourse(@PathParam("courseCode") String courseCode) {
+
+		CourseService cService = new CourseService();
+		String json = new Gson().toJson((cService).getGradesForCourse(courseCode));
+		System.out.println(json);
+		return json;
+
 	}
 
 }

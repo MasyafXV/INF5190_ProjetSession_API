@@ -4,10 +4,12 @@ import static com.mongodb.client.model.Filters.eq;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.bson.Document;
 import org.json.JSONObject;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -88,7 +90,7 @@ public class CourseService {
 
 		// update the course
 		Document course = new Document("students",
-				Arrays.asList(newStudent.getJSONObject("Student").getString("userName")));
+				Arrays.asList(newStudent.getJSONObject("Student").getString("userName"), "", ""));
 		coursesCollection.updateOne(eq("courseLevel", newStudent.getJSONObject("Student").getString("courseLevel")),
 				new Document("$push", course));
 
@@ -107,6 +109,76 @@ public class CourseService {
 				courseDoc);
 
 		return true;
+	}
+
+	@SuppressWarnings({ "unchecked", "null" })
+	public boolean gradeStudent(JSONObject grade) {
+		MongoCollection<Document> coursesCollection = mydatabase.getCollection("Courses");
+
+		// query to find the right course
+		String[] splitCourseCode = grade.getString("courseCode").split("-", 2);
+
+		BasicDBObject andQuery = new BasicDBObject();
+		List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
+		obj.add(new BasicDBObject("courseLevel", splitCourseCode[1]));
+		obj.add(new BasicDBObject("sessionCode", splitCourseCode[0]));
+		// obj.add(new BasicDBObject("students.0.0",
+		// new BasicDBObject("", grade.getJSONObject("Student").getString("name"))));
+		andQuery.put("$and", obj);
+
+		System.out.println("gradeStudentQuery : " + andQuery.toString());
+
+		Document documentCourse = coursesCollection.find(andQuery).first();
+		// MongoCursor<Document> cursor = iterable.iterator();
+
+		ArrayList<Object> studentsList = (ArrayList<Object>) documentCourse.get("students");
+		System.out.println(studentsList.toString());
+
+		int index = 99999;
+		for (int i = 0; i < studentsList.size(); i++) {
+			ArrayList<String> student = (ArrayList<String>) studentsList.get(i);
+
+			System.out.println(student.toString());
+			if (student.get(0).equals(grade.getJSONObject("Student").getString("name"))) {
+				index = i;
+			}
+		}
+		System.out.println("indexArray : " + index);
+
+		BasicDBObject gradingStudent = new BasicDBObject();
+		gradingStudent.put("students." + index + ".1", grade.getJSONObject("Student").getString("comments"));
+		gradingStudent.put("students." + index + ".2", grade.getJSONObject("Student").getString("grade"));
+
+		BasicDBObject updateGrade = new BasicDBObject();
+		updateGrade.put("$set", gradingStudent);
+
+		coursesCollection.updateOne(andQuery, updateGrade);
+
+		return true;
+
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Object> getGradesForCourse(String courseCode) {
+		MongoCollection<Document> courseCollection = mydatabase.getCollection("Courses");
+
+		String[] splitCourseCode = courseCode.split("-", 2);
+
+		BasicDBObject andQuery = new BasicDBObject();
+		List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
+		obj.add(new BasicDBObject("courseLevel", splitCourseCode[1]));
+		obj.add(new BasicDBObject("sessionCode", splitCourseCode[0]));
+		andQuery.put("$and", obj);
+
+		System.out.println("getGradesQuery : " + andQuery.toString());
+
+		Document course = courseCollection.find(andQuery).first();
+
+		ArrayList<Object> studentsGrades = null;
+		studentsGrades = (ArrayList<Object>) course.get("students");
+
+		return studentsGrades;
+
 	}
 
 }
