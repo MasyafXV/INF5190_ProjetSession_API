@@ -6,15 +6,15 @@ Et Thien My Elsa Tran (TRAT24569808)
 Ceci est le web API de notre projet de session utilisant Jersey RESTful Web Services, un framework open source pour le développement de services Web RESTful en Java. Il prend en charge les API JAX-RS et sert d'implémentation de référence JAX-RS.
 
 ## Utilisation
-Lancer cet application sur Tomcat v.9 dans localhost.
+Lancer cette application sur Tomcat v.9 dans localhost.
 
-Vous s'assurer que l'API fonctionne, vous devriez voir l'image ci dessous a l'adresse http://localhost:8080/services/
+Pour vous assurer que l'API fonctionne, vous devriez voir l'image ci-dessous à l'adresse http://localhost:8080/services/
 
 ![jersey](/preview.png)
 
 
 ## À ne pas oublier
-Ne pas oublier d'inclure toute les librairies dans le build path de ecplipse. Touts les fichiers jars necessaire sont dont le folder `lib` de WEB-INF.
+Ne pas oublier d'inclure toutes les librairies dans le build path d’éclipse. Tous les fichiers jars nécessaires sont dans le folder `lib` de WEB-INF.
 
 # Précision pour lancer l'API
 Pour run l'API, il faut lancer le dossier `services` et non le dossier INF5190_ProjetSession_API.
